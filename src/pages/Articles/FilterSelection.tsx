@@ -8,7 +8,16 @@ export default function FilterSelection(props: {
     <div className="collapse border rounded-xl m-3 collapse-arrow bg-base-200">
       <input type="checkbox" />
       <div className="collapse-title text-xl font-medium">{props.title}</div>
-      <div className="collapse-content">
+      <div className="collapse-content flex flex-col">
+        <button
+          className="btn mb-4  btn-outline btn-primary btn-sm"
+          onClick={() => {
+            props.setFilterCB("");
+          }}
+        >
+          ❌ Clear Filter
+        </button>
+
         <div
           className={`flex flex-wrap justify-center ${
             props.filterData.length > 5 ? "h-48" : ""

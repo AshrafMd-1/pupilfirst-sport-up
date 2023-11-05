@@ -1,8 +1,8 @@
-import { Article } from "../../types/auth.ts";
 import { useEffect, useState } from "react";
 import { getArticles } from "../../utils/FetchRequest.ts";
 import ArticleCards from "./ArticleCards.tsx";
 import { LoadingScreen } from "../../components/LoadingScreen.tsx";
+import { Article } from "../../types/data.ts";
 
 function ArticleComponent() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -14,6 +14,8 @@ function ArticleComponent() {
   const setSportsFilter = (filter: string) => {
     if (selectedSports.includes(filter)) {
       setSelectedSports(selectedSports.filter((sport) => sport !== filter));
+    } else if (filter === "") {
+      setSelectedSports([]);
     } else {
       setSelectedSports([...selectedSports, filter]);
     }
@@ -22,6 +24,8 @@ function ArticleComponent() {
   const setTeamsFilter = (filter: string) => {
     if (selectedTeams.includes(filter)) {
       setSelectedTeams(selectedTeams.filter((team) => team !== filter));
+    } else if (filter === "") {
+      setSelectedTeams([]);
     } else {
       setSelectedTeams([...selectedTeams, filter]);
     }
