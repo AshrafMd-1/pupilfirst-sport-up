@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { getMatches } from "../../utils/FetchRequest.ts";
 import MatchCards from "./MatchCards.tsx";
-import { Match } from "../../types/types.ts";
+import { Match } from "../../types/auth.ts";
 import {LoadingScreen} from "../../components/LoadingScreen.tsx";
 
 function MatchComponent() {

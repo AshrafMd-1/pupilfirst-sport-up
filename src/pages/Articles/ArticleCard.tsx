@@ -1,12 +1,16 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { Fragment, useEffect, useState } from "react";
-import { Article, ArticleDetail } from "../../types/types.ts";
+import {Fragment, useContext, useEffect, useState} from "react";
 import { getArticleDetail } from "../../utils/FetchRequest.ts";
 import { LoadingScreen } from "../../components/LoadingScreen.tsx";
+import { MonthConversion } from "../../utils/UtilityFunctions.ts";
+import { Article, ArticleDetail } from "../../types/data.ts";
+import {ThemeContext} from "../../context/theme.tsx";
 
 export default function ArticleCard(props: { article: Article }) {
   const [isOpen, setIsOpen] = useState(false);
   const [articleData, setArticleData] = useState<ArticleDetail>();
+   const { theme } = useContext(ThemeContext);
+
 
   useEffect(() => {
     if (isOpen) {
@@ -31,35 +35,46 @@ export default function ArticleCard(props: { article: Article }) {
       <div className="flex items-center w-full mx-auto my-3">
         <div
           onClick={openModal}
-          className="cursor-pointer border-r border-b border-l  rounded-b-2xl lg:rounded-b-none lg:rounded-r lg:border-l-0 lg:border-t lg:border-gray-400 border-gray-400 lg:flex min-w-full bg-white rounded-lg shadow-lg hover:shadow-xl transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 "
+          className="cursor-pointer min-w-full border-2 shadow-lg rounded-2xl  transition duration-200 ease-in-out transform hover:-translate-y-1 hover:scale-105"
         >
-          <div
-            className="h-48  lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden"
-            style={{
-              backgroundImage: `url(${props.article.thumbnail})`,
-              backgroundPosition: "center center",
-              backgroundSize: "cover",
-              backgroundRepeat: "no-repeat",
-            }}
-          ></div>
-          <div className="  bg-white  p-4 flex flex-col justify-between leading-normal">
-            <div className="mb-8">
-              <div className="text-gray-900 font-bold text-xl mb-2">
-                {props.article.title}
-              </div>
-              <p className="text-gray-700 text-base">{props.article.summary}</p>
+          <article className="flex transition min-w-full ">
+            <div className="rotate-180  p-2 [writing-mode:_vertical-lr]">
+              <time
+                dateTime={new Date(props.article.date).toISOString()}
+                className="flex items-center justify-between gap-4 text-xs font-bold uppercase "
+              >
+                <span>{new Date(props.article.date).getFullYear()}</span>
+                <span className="w-px flex-1 bg-gray-500 "></span>
+                <span>
+                  {MonthConversion(new Date(props.article.date).getMonth()) +
+                    " " +
+                    new Date(props.article.date).getDate()}
+                </span>
+              </time>
             </div>
-            <div className="flex items-center">
-              <div className="text-sm">
-                <p className="text-gray-900 leading-none">
-                  {props.article.sport.name}
+
+            <div
+              className="hidden sm:block sm:basis-56"
+              style={{
+                backgroundImage: `url(${props.article.thumbnail})`,
+                backgroundPosition: "center center",
+                backgroundSize: "cover",
+                backgroundRepeat: "no-repeat",
+              }}
+            ></div>
+
+            <div className="flex flex-1 flex-col justify-between">
+              <div className="border-s border-gray-900/10 p-4 sm:border-l-transparent sm:p-6">
+                <h3 className="font-bold uppercase ">{props.article.title}</h3>
+                <p className="mt-2 line-clamp-3 text-sm/relaxed ">
+                  {props.article.summary}
                 </p>
-                <p className="text-gray-600">
-                  {new Date(props.article.date).toLocaleDateString()}
-                </p>
+                <div className="mt-4 flex items-center justify-between">
+                  <div className="badge rounded-badge badge-primary"># {props.article.sport.name}</div>
+                </div>
               </div>
             </div>
-          </div>
+          </article>
         </div>
       </div>
 
@@ -88,17 +103,17 @@ export default function ArticleCard(props: { article: Article }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full lg:max-w-2xl max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel data-theme={theme} className="w-full border-x border-t lg:max-w-2xl max-w-md transform overflow-hidden rounded-2xl  p-6 text-left align-middle shadow-xl transition-all">
                   {articleData ? (
                     <>
                       <span className="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
                       <div className="sm:flex sm:justify-between sm:gap-4">
                         <div>
-                          <h3 className="text-lg font-bold text-gray-900 sm:text-xl">
+                          <h3 className="text-lg font-bold  sm:text-xl">
                             {articleData.title}
                           </h3>
 
-                          <p className="mt-1 text-md font-medium text-gray-600">
+                          <p className="mt-1 text-md font-medium ">
                             {articleData.summary}
                           </p>
                         </div>
@@ -118,7 +133,7 @@ export default function ArticleCard(props: { article: Article }) {
 
                       <dl className="mt-6 flex text-center justify-evenly gap-4 sm:gap-6">
                         <div className="flex flex-col-reverse">
-                          <dt className="text-md font-medium text-gray-600">
+                          <dt className="text-md font-medium ">
                             Published
                           </dt>
                           <dd className="text-md text-gray-500">
@@ -129,7 +144,7 @@ export default function ArticleCard(props: { article: Article }) {
                         </div>
 
                         <div className="flex text-center flex-col-reverse">
-                          <dt className="text-md font-medium text-gray-600">
+                          <dt className="text-md font-medium">
                             Sport
                           </dt>
                           <dd className="text-md text-gray-500">
@@ -139,10 +154,10 @@ export default function ArticleCard(props: { article: Article }) {
 
                         {articleData.teams.length === 1 ? (
                           <div className="flex flex-col-reverse">
-                            <dt className="text-md mx-auto text-center font-medium text-gray-600">
+                            <dt className="text-md mx-auto text-center font-medium ">
                               Team
                             </dt>
-                            <dd className="text-md flex gap-2 items-center text-center text-gray-500">
+                            <dd className="text-md flex gap-2 items-center text-center ">
                               <span className="text-sm text-gray-500">
                                 {articleData.teams[0].name}
                               </span>
@@ -152,14 +167,14 @@ export default function ArticleCard(props: { article: Article }) {
 
                         {articleData.teams.length === 2 ? (
                           <div className="flex flex-col-reverse">
-                            <dt className="text-md mx-auto text-center font-medium text-gray-600">
+                            <dt className="text-md mx-auto text-center font-medium ">
                               Teams
                             </dt>
-                            <dd className="text-md flex gap-2 items-center text-center text-gray-500">
+                            <dd className="text-md flex gap-2 items-center text-center">
                               <span className="text-sm text-gray-500">
                                 {articleData.teams[0].name}
                               </span>
-                              <span className="text-md text-gray-500 font-bold">
+                              <span className="text-md  font-bold">
                                 vs
                               </span>
                               <span className="text-sm text-gray-500">

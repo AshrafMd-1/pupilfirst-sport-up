@@ -1,6 +1,6 @@
 import Navbar from "./Navbar.tsx";
-import ArticleComponent from "../Articles";
-import MatchComponent from "../Matches";
+import ArticleComponent from "../../Articles";
+import MatchComponent from "../../Matches";
 
 function Dashboard() {
   return (

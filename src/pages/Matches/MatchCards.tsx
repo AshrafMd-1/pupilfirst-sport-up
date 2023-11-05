@@ -1,4 +1,4 @@
-import { Match } from "../../types/types.ts";
+import { Match } from "../../types/auth.ts";
 import MatchCard from "./MatchCard.tsx";
 
 function MatchCards(props: { matches: Match[] }) {

@@ -1,4 +1,5 @@
 import { request } from "./FetchPrototype.ts";
+import { LoginUser, RegisterUser } from "../types/auth.ts";
 
 export const getArticles = async () => {
   return await request("/articles", "GET");
@@ -13,6 +14,13 @@ export const getMatches = async () => {
 };
 
 export const getMatchDetail = async (id: number) => {
-  return  await request(`/matches/${id}`, "GET");
+  return await request(`/matches/${id}`, "GET");
+};
 
+export const createUser = async (data: RegisterUser) => {
+  return await request("/users", "POST", data);
+};
+
+export const loginUser = async (data: LoginUser) => {
+  return await request("/users/sign_in", "POST", data);
 };

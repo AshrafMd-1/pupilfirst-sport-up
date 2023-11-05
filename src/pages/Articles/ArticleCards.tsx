@@ -1,6 +1,6 @@
-import { Article } from "../../types/types.ts";
 import ArticleCard from "./ArticleCard.tsx";
 import FilterSelection from "./FilterSelection.tsx";
+import {Article} from "../../types/data.ts";
 
 function ArticleCards(props: {
   articles: Article[];
@@ -14,7 +14,7 @@ function ArticleCards(props: {
   return (
     <div className="mx-12">
       <hr className="border-4 m-4  border-black w-full rounded-2xl" />
-      <h1 className="text-3xl font-bold text-center text-gray-900">Articles</h1>
+      <h1 className="text-3xl font-bold text-center">Articles</h1>
       <div className="flex items-center justify-center">
         <FilterSelection
           filterData={props.sports}
@@ -31,6 +31,7 @@ function ArticleCards(props: {
           selectedData={props.selectedTeams}
         />
       </div>
+      <div>
       {props.articles.map((article) => {
         return (
           <div key={article.id}>
@@ -38,6 +39,7 @@ function ArticleCards(props: {
           </div>
         );
       })}
+      </div>
     </div>
   );
 }

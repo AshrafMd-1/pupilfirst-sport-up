@@ -1,4 +1,4 @@
-import { Article } from "../../types/types.ts";
+import { Article } from "../../types/auth.ts";
 import { useEffect, useState } from "react";
 import { getArticles } from "../../utils/FetchRequest.ts";
 import ArticleCards from "./ArticleCards.tsx";

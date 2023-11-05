@@ -1,6 +1,6 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
-import { Match, MatchDetail } from "../../types/types.ts";
+import { Match, MatchDetail } from "../../types/auth.ts";
 import { getMatchDetail } from "../../utils/FetchRequest.ts";
 import {
   TimeRemaining,

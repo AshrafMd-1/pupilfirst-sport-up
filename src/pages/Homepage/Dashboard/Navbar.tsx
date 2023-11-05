@@ -1,17 +1,13 @@
-import logo from "../../assets/logo/logo.png";
-import "@theme-toggles/react/css/Within.css";
-import { Within } from "@theme-toggles/react";
-import { useState } from "react";
-
+import logo from "../../../assets/logo/logo.png";
 import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
+import ThemeList from "../../../components/ThemeList.tsx";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function Navbar() {
-  const [isToggled, setToggle] = useState(false);
   return (
     <Disclosure as="nav" className="bg-gray-800">
       {() => (
@@ -24,15 +20,8 @@ export default function Navbar() {
               </div>
 
               <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <Within
-                  duration={750}
-                  className="hover:text-gray-200 text-white"
-                  style={{ fontSize: "2.6rem" }}
-                  toggled={isToggled}
-                  toggle={setToggle}
-                />
-
-                {/* Profile dropdown */}
+                <h1 className=" text-white mx-2 font-bold text-2xl">Theme</h1>
+                <ThemeList />
                 <Menu as="div" className="relative ml-3">
                   <div>
                     <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
