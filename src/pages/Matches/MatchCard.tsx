@@ -1,12 +1,12 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
-import { Match, MatchDetail } from "../../types/auth.ts";
 import { getMatchDetail } from "../../utils/FetchRequest.ts";
 import {
   TimeRemaining,
   TimeRemainingFormatted,
 } from "../../utils/UtilityFunctions.ts";
 import { LoadingScreen } from "../../components/LoadingScreen.tsx";
+import { Match, MatchDetail } from "../../types/data.ts";
 
 export default function MatchCard(props: { match: Match }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -161,25 +161,34 @@ export default function MatchCard(props: { match: Match }) {
                         <div>
                           <p
                             className={`${
-                              matchData.score[matchData.teams[0].name] >
-                              matchData.score[matchData.teams[1].name]
+                              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                              // @ts-ignore
+                              Number(matchData.score[matchData.teams[0].name]) >
+                              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                              // @ts-ignore
+                              Number(matchData.score[matchData.teams[1].name])
                                 ? "text-green-500"
                                 : "text-red-500"
                             }`}
                           >
                             {matchData.teams[0].name} :{" "}
-                            {matchData.score[matchData.teams[0].name]}
+                            {/*{matchData.score[matchData.teams[0].name]}*/}
                           </p>
                           <p
                             className={`${
+                              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                              // @ts-ignore
                               matchData.score[matchData.teams[0].name] <
+                              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                              // @ts-ignore
                               matchData.score[matchData.teams[1].name]
                                 ? "text-green-500"
                                 : "text-red-500"
                             }`}
                           >
-                            {matchData.teams[1].name} :{" "}
-                            {matchData.score[matchData.teams[1].name]}
+                            {matchData.teams[1].name} :
+
+                            {/*{matchData.score[matchData.teams[1].name]}*/}
                           </p>
                         </div>
                       </div>
