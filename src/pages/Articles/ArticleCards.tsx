@@ -13,7 +13,6 @@ function ArticleCards(props: {
 }) {
   return (
     <div className="mx-12">
-      <hr className="border-4 m-4  border-black w-full rounded-2xl" />
       <h1 className="text-3xl font-bold text-center">Articles</h1>
       <div className="flex items-center justify-center">
         <FilterSelection

@@ -1,18 +1,20 @@
-import { Match } from "../../types/auth.ts";
 import MatchCard from "./MatchCard.tsx";
+import { Match } from "../../types/data.ts";
 
 function MatchCards(props: { matches: Match[] }) {
   return (
     <div className="mx-12">
-      <h1 className="text-3xl font-bold text-center text-gray-900">Matches</h1>
-      <div className="flex gap-3 w-full mt-5 mx-5 p-3 overflow-auto">
-        {props.matches.map((match) => {
-          return (
-            <div key={match.id}>
-              <MatchCard match={match} />
-            </div>
-          );
-        })}
+      <h1 className="text-3xl font-bold text-center">Matches</h1>
+      <div className="carousel mt-3 carousel-center max-w-full p-4 space-x-4 rounded-box">
+        <div className="carousel-item">
+          {props.matches.map((match) => {
+            return (
+              <div key={match.id} className="mx-2">
+                <MatchCard match={match} />;
+              </div>
+            );
+          })}{" "}
+        </div>
       </div>
     </div>
   );

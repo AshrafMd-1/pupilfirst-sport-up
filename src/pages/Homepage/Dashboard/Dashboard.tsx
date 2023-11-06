@@ -7,6 +7,7 @@ function Dashboard() {
     <div>
       <Navbar />
       <MatchComponent />
+      <hr className="border-4 my-4 w-full rounded-2xl" />
       <ArticleComponent />
     </div>
   );

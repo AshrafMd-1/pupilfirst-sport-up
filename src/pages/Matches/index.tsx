@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { getMatches } from "../../utils/FetchRequest.ts";
 import MatchCards from "./MatchCards.tsx";
-import { Match } from "../../types/auth.ts";
-import {LoadingScreen} from "../../components/LoadingScreen.tsx";
+import { LoadingScreen } from "../../components/LoadingScreen.tsx";
+import { Match } from "../../types/data.ts";
 
 function MatchComponent() {
   const [matches, setMatches] = useState<Match[]>([]);
@@ -28,11 +28,7 @@ function MatchComponent() {
       </div>
     );
   } else {
-    return (
-      <div>
-        <MatchCards matches={sortMatchesBasedOnTime(matches)} />
-      </div>
-    );
+    return <MatchCards matches={sortMatchesBasedOnTime(matches)} />;
   }
 }
 
