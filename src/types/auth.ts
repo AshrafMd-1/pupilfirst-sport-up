@@ -27,3 +27,10 @@ export type RegisterUser = {
   email: string;
   password: string;
 };
+
+export type User = {
+  id: number;
+  name: string;
+  email: string;
+  preferences: NonNullable<unknown>;
+};

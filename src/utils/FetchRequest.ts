@@ -24,3 +24,7 @@ export const createUser = async (data: RegisterUser) => {
 export const loginUser = async (data: LoginUser) => {
   return await request("/users/sign_in", "POST", data);
 };
+
+export const getUser = async () => {
+  return await request("/users", "GET");
+};

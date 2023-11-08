@@ -36,7 +36,6 @@ export const AuthContainer = (props: {
         if (response.auth_token === undefined) {
           setError(response.errors[0]);
         } else {
-          console.log(response.auth_token);
           props.remember
             ? localStorage.setItem("auth_token", response.auth_token)
             : sessionStorage.setItem("auth_token", response.auth_token);
