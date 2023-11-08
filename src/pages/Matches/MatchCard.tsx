@@ -51,7 +51,11 @@ export default function MatchCard(props: { match: Match }) {
             onClick={fetchMatchDetail}
             className="bg-gray-800 mb-auto text-white px-2 py-1 rounded-lg"
           >
-            {isLoaded ? "Loading..." : "Refresh"}
+            {isLoaded ? (
+              <span className="loading loading-dots loading-md"></span>
+            ) : (
+              "Refresh"
+            )}
           </button>
           <div onClick={openModal}>
             <div className="flex justify-start flex-col items-start">
@@ -212,7 +216,11 @@ export default function MatchCard(props: { match: Match }) {
                               onClick={fetchMatchDetail}
                               className="bg-gray-800 text-white px-2 py-1 rounded-lg"
                             >
-                              {isLoaded ? "Loading..." : "Refresh"}
+                              {isLoaded ? (
+                                <span className="loading loading-dots loading-md"></span>
+                              ) : (
+                                "Refresh"
+                              )}
                             </button>
                           </div>
                         </div>

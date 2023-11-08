@@ -68,13 +68,17 @@ export const AuthContainer = (props: {
             className="bg-blue-500 w-full hover:bg-blue-700 text-white font-bold h-1/2 py-2 px-4 rounded flex items-center justify-center"
             onClick={handleSubmit}
           >
-            {loading
-              ? props.title === "Sign Up"
-                ? "Signing Up....."
-                : "Logging In....."
-              : props.title === "Sign Up"
-              ? "Sign Up"
-              : "Login"}
+            {loading ? (
+              props.title === "Sign Up" ? (
+                <span className="loading loading-dots loading-md"></span>
+              ) : (
+                <span className="loading loading-dots loading-md"></span>
+              )
+            ) : props.title === "Sign Up" ? (
+              "Sign Up"
+            ) : (
+              "Login"
+            )}
           </button>
           {error && (
             <p className="text-red-500 text-xl font-bold mt-2">{error}</p>
