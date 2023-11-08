@@ -26,5 +26,11 @@ export const loginUser = async (data: LoginUser) => {
 };
 
 export const getUser = async () => {
-  return await request("/users", "GET");
+  return await request("/user", "GET");
+};
+
+export const logoutUser = () => {
+  sessionStorage.removeItem("auth_token");
+  localStorage.removeItem("auth_token");
+  window.location.href = "/";
 };

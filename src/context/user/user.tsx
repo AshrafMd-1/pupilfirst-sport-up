@@ -17,11 +17,16 @@ const UserProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
 
   useEffect(() => {
     const loadUserData = async () => {
-      try {
-        const userData = await getUser();
-        setCurrentUser(userData as User);
-      } catch (error) {
-        console.error(error);
+      const user =
+        localStorage.getItem("auth_token") ||
+        sessionStorage.getItem("auth_token");
+      if (user) {
+        try {
+          const userData = await getUser();
+          setCurrentUser(userData as User);
+        } catch (error) {
+          console.error(error);
+        }
       }
     };
 

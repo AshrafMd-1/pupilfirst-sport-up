@@ -1,13 +1,101 @@
 import logo from "../../../assets/logo/logo.png";
-import { Fragment } from "react";
+import { Fragment, useContext } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import ThemeList from "../../../components/ThemeList.tsx";
+import { UserContext } from "../../../context/user/user.tsx";
+import { User } from "../../../types/auth.ts";
+import { logoutUser } from "../../../utils/FetchRequest.ts";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
+function profileOptions(user: User | null) {
+  if (user && user.email) {
+    return (
+      <Menu.Items className="absolute text-center right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Item>
+          {({ active }) => (
+            <a
+              href="/account"
+              className={classNames(
+                active ? "bg-gray-100" : "",
+                "block px-4 py-2 text-sm text-gray-700",
+              )}
+            >
+              <span className="mr-2 font-bold" aria-hidden="true">
+                {user.name}
+              </span>
+              <br />
+              Profile
+            </a>
+          )}
+        </Menu.Item>
+        <Menu.Item>
+          {({ active }) => (
+            <button
+              onClick={logoutUser}
+              className={classNames(
+                active ? "bg-gray-100" : "",
+                "block px-4 py-2 w-full text-sm text-gray-700",
+              )}
+            >
+              Sign out
+            </button>
+          )}
+        </Menu.Item>
+      </Menu.Items>
+    );
+  } else {
+    return (
+      <Menu.Items className="absolute text-center right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+        <Menu.Item>
+          {({ active }) => (
+            <a
+              href="/"
+              className={classNames(
+                active ? "bg-gray-100" : "",
+                "block px-4 py-2 text-sm text-gray-700",
+              )}
+            >
+              Homepage
+            </a>
+          )}
+        </Menu.Item>
+        <Menu.Item>
+          {({ active }) => (
+            <a
+              href="/login"
+              className={classNames(
+                active ? "bg-gray-100" : "",
+                "block px-4 py-2 text-sm text-gray-700",
+              )}
+            >
+              Login
+            </a>
+          )}
+        </Menu.Item>
+        <Menu.Item>
+          {({ active }) => (
+            <a
+              href="/signup"
+              className={classNames(
+                active ? "bg-gray-100" : "",
+                "block px-4 py-2 text-sm text-gray-700",
+              )}
+            >
+              Sign Up
+            </a>
+          )}
+        </Menu.Item>
+      </Menu.Items>
+    );
+  }
+}
+
 export default function Navbar() {
+  const userData = useContext(UserContext);
+  console.log("userData", userData);
   return (
     <Disclosure as="nav" className="bg-gray-800 ">
       {() => (
@@ -50,47 +138,7 @@ export default function Navbar() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/account"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700",
-                            )}
-                          >
-                            Your Profile
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/settings"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700",
-                            )}
-                          >
-                            Settings
-                          </a>
-                        )}
-                      </Menu.Item>
-                      <Menu.Item>
-                        {({ active }) => (
-                          <a
-                            href="/logout"
-                            className={classNames(
-                              active ? "bg-gray-100" : "",
-                              "block px-4 py-2 text-sm text-gray-700",
-                            )}
-                          >
-                            Sign out
-                          </a>
-                        )}
-                      </Menu.Item>
-                    </Menu.Items>
+                    {profileOptions(userData.currentUser)}
                   </Transition>
                 </Menu>
               </div>
