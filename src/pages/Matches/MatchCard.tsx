@@ -26,12 +26,6 @@ export default function MatchCard(props: { match: Match }) {
     fetchMatchDetail();
   }, []);
 
-  useEffect(() => {
-    if (isOpen) {
-      fetchMatchDetail();
-    }
-  }, [isOpen, props.match.id]);
-
   function closeModal() {
     setIsOpen(false);
   }
@@ -156,7 +150,7 @@ export default function MatchCard(props: { match: Match }) {
             <div className="flex flex-row">
               <dt className="text-md font-medium">Ends At :</dt>
               {TimeRemaining(props.match.endsAt) === -1 ? (
-                <dd className="text-md ml-1">Ended</dd>
+                <dd className="text-md font-bold ml-1">Ended</dd>
               ) : (
                 <dd className="text-md font-bold ml-1">
                   {TimeRemainingFormatted(props.match.endsAt)}

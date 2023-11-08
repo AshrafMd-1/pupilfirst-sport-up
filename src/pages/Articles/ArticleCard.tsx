@@ -12,14 +12,14 @@ export default function ArticleCard(props: { article: Article }) {
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && articleData === undefined) {
       const fetchArticleDetail = async () => {
         const res = await getArticleDetail(props.article.id);
         setArticleData(res);
       };
       fetchArticleDetail();
     }
-  }, [isOpen, props.article.id]);
+  }, [isOpen, props.article.id, articleData]);
 
   function closeModal() {
     setIsOpen(false);
