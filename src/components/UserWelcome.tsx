@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { UserContext } from "../context/user/user.tsx";
 
-export default function UserDetails() {
+export default function UserWelcome() {
   const userData = useContext(UserContext);
 
   return (

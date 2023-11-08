@@ -1,13 +1,28 @@
-import logo from "../../../assets/logo/logo.png";
+import logo from "../assets/logo/logo.png";
 import { Fragment, useContext } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import ThemeList from "../../../components/ThemeList.tsx";
-import { UserContext } from "../../../context/user/user.tsx";
-import { User } from "../../../types/auth.ts";
-import { logoutUser } from "../../../utils/FetchRequest.ts";
+import ThemeList from "./ThemeList.tsx";
+import { UserContext } from "../context/user/user.tsx";
+import { User } from "../types/auth.ts";
+import { logoutUser } from "../utils/FetchRequest.ts";
+import { Link } from "react-router-dom";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
+}
+
+function linkChanger() {
+  if (window.location.pathname.includes("/account")) {
+    return {
+      pathname: "/",
+      name: "Dashboard",
+    };
+  } else {
+    return {
+      pathname: "/account",
+      name: "Account",
+    };
+  }
 }
 
 function profileOptions(user: User | null) {
@@ -16,19 +31,15 @@ function profileOptions(user: User | null) {
       <Menu.Items className="absolute text-center right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
         <Menu.Item>
           {({ active }) => (
-            <a
-              href="/account"
+            <Link
+              to={linkChanger().pathname}
               className={classNames(
                 active ? "bg-gray-100" : "",
-                "block px-4 py-2 text-sm text-gray-700",
+                "block px-4 py-2 w-full text-sm text-gray-700",
               )}
             >
-              <span className="mr-2 font-bold" aria-hidden="true">
-                {user.name}
-              </span>
-              <br />
-              Profile
-            </a>
+              {linkChanger().name}
+            </Link>
           )}
         </Menu.Item>
         <Menu.Item>
@@ -51,41 +62,41 @@ function profileOptions(user: User | null) {
       <Menu.Items className="absolute text-center right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
         <Menu.Item>
           {({ active }) => (
-            <a
-              href="/"
+            <Link
+              to="/"
               className={classNames(
                 active ? "bg-gray-100" : "",
                 "block px-4 py-2 text-sm text-gray-700",
               )}
             >
               Homepage
-            </a>
+            </Link>
           )}
         </Menu.Item>
         <Menu.Item>
           {({ active }) => (
-            <a
-              href="/login"
+            <Link
+              to="/login"
               className={classNames(
                 active ? "bg-gray-100" : "",
                 "block px-4 py-2 text-sm text-gray-700",
               )}
             >
               Login
-            </a>
+            </Link>
           )}
         </Menu.Item>
         <Menu.Item>
           {({ active }) => (
-            <a
-              href="/signup"
+            <Link
+              to="/signup"
               className={classNames(
                 active ? "bg-gray-100" : "",
                 "block px-4 py-2 text-sm text-gray-700",
               )}
             >
               Sign Up
-            </a>
+            </Link>
           )}
         </Menu.Item>
       </Menu.Items>

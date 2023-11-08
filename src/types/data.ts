@@ -36,7 +36,9 @@ export interface MatchDetail extends Match {
   playingTeam: number;
   story: string;
   startsAt: string;
-  score: object;
+  score: {
+    [key: string]: number;
+  };
 }
 
 export interface Preference {

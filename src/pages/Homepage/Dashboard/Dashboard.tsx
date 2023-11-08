@@ -1,11 +1,11 @@
-import Navbar from "./Navbar.tsx";
+import Navbar from "../../../components/Navbar.tsx";
 import ArticleComponent from "../../Articles";
 import MatchComponent from "../../Matches";
 import ErrorBoundary from "../../../components/ErrorBoundary.tsx";
 import { Suspense } from "react";
 import { LoadingScreen } from "../../../components/LoadingScreen.tsx";
 import { UserProvider } from "../../../context/user/user.tsx";
-import UserDetails from "../../../components/UserDetails.tsx";
+import UserWelcome from "../../../components/UserWelcome.tsx";
 
 function Dashboard() {
   return (
@@ -18,7 +18,7 @@ function Dashboard() {
         </ErrorBoundary>
         <ErrorBoundary>
           <Suspense fallback={<LoadingScreen />}>
-            <UserDetails />
+            <UserWelcome />
           </Suspense>
         </ErrorBoundary>
         <ErrorBoundary>

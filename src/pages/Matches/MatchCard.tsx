@@ -37,7 +37,7 @@ export default function MatchCard(props: { match: Match }) {
     <div>
       <div className="inset-0 flex gap-2 items-center justify-center">
         <div
-          className="cursor-pointer man-w-fit rounded-xl flex flex-row-reverse items-center  justify-evenly border border-gray-800 p-8 shadow-xl transition hover:border-black-500/10 hover:shadow-pink-500/10"
+          className="cursor-pointer man-w-fit rounded-xl flex flex-row-reverse items-center  justify-evenly border-2  p-8 shadow-xl transition hover:border-black-500/10 hover:shadow-pink-500/10"
           style={{ width: "30rem", height: "8rem" }}
         >
           <button
@@ -61,7 +61,7 @@ export default function MatchCard(props: { match: Match }) {
             </div>
             <div className="mt-1">
               <div className="flex items-center">
-                <h1 className="text-md font-bold text-gray-900">Location:</h1>
+                <h1 className="text-md font-bold">Location:</h1>
                 <p className="ml-2 text-md">{props.match.location}</p>
               </div>
               {TimeRemaining(props.match.endsAt) === -1 ? (
@@ -161,8 +161,8 @@ export default function MatchCard(props: { match: Match }) {
                         <div>
                           <p
                             className={`${
-                              Number(matchData.score[matchData.teams[0].name]) >
-                              Number(matchData.score[matchData.teams[1].name])
+                              matchData.score[matchData.teams[0].name] >
+                              matchData.score[matchData.teams[1].name]
                                 ? "text-green-500"
                                 : "text-red-500"
                             }`}
