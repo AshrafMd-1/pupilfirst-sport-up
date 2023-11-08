@@ -1,6 +1,9 @@
 import ArticleCard from "./ArticleCard.tsx";
 import FilterSelection from "./FilterSelection.tsx";
-import {Article} from "../../types/data.ts";
+import { Article } from "../../types/data.ts";
+import Preferences from "./Preferences.tsx";
+import { useContext } from "react";
+import { UserContext } from "../../context/user/user.tsx";
 
 function ArticleCards(props: {
   articles: Article[];
@@ -10,10 +13,25 @@ function ArticleCards(props: {
   setTeamsFilter: (filter: string) => void;
   selectedSports: string[];
   selectedTeams: string[];
+  setSelectedSports: (filter: string[]) => void;
+  setSelectedTeams: (filter: string[]) => void;
 }) {
+  const userData = useContext(UserContext);
   return (
     <div className="mx-12">
-      <h1 className="text-3xl font-bold text-center">Articles</h1>
+      <div className="flex items-center ">
+        <h1 className="text-3xl font-bold mx-auto">Articles</h1>
+        {userData?.currentUser?.name && (
+          <Preferences
+            sports={props.sports}
+            teams={props.teams}
+            selectedSports={props.selectedSports}
+            selectedTeams={props.selectedTeams}
+            setSelectedSports={props.setSelectedSports}
+            setSelectedTeams={props.setSelectedTeams}
+          />
+        )}
+      </div>
       <div className="flex items-center justify-center">
         <FilterSelection
           filterData={props.sports}
@@ -31,13 +49,13 @@ function ArticleCards(props: {
         />
       </div>
       <div>
-      {props.articles.map((article) => {
-        return (
-          <div key={article.id}>
-            <ArticleCard article={article} />
-          </div>
-        );
-      })}
+        {props.articles.map((article) => {
+          return (
+            <div key={article.id}>
+              <ArticleCard article={article} />
+            </div>
+          );
+        })}
       </div>
     </div>
   );

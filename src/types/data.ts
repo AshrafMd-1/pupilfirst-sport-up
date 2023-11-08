@@ -38,3 +38,10 @@ export interface MatchDetail extends Match {
   startsAt: string;
   score: object;
 }
+
+export interface Preference {
+  preferences:{
+    sports?: string[];
+    teams?: string[];
+  }
+}

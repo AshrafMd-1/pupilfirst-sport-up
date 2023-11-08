@@ -1,3 +1,4 @@
+
 type NameChange = {
   type: "name_change";
   value: string;
@@ -32,5 +33,8 @@ export type User = {
   id: number;
   name: string;
   email: string;
-  preferences: NonNullable<unknown>;
+  preferences: {
+    sports?: string[];
+    teams?: string[];
+  };
 };

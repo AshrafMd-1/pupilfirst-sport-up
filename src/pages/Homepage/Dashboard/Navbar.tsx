@@ -95,7 +95,6 @@ function profileOptions(user: User | null) {
 
 export default function Navbar() {
   const userData = useContext(UserContext);
-  console.log("userData", userData);
   return (
     <Disclosure as="nav" className="bg-gray-800 ">
       {() => (

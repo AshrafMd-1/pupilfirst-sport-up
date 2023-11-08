@@ -1,5 +1,6 @@
 import { request } from "./FetchPrototype.ts";
 import { LoginUser, RegisterUser } from "../types/auth.ts";
+import { Preference } from "../types/data.ts";
 
 export const getArticles = async () => {
   return await request("/articles", "GET");
@@ -33,4 +34,8 @@ export const logoutUser = () => {
   sessionStorage.removeItem("auth_token");
   localStorage.removeItem("auth_token");
   window.location.href = "/";
+};
+
+export const sendPreferences = async (data: Preference) => {
+  return await request("/user/preferences", "PATCH", data);
 };

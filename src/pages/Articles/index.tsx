@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getArticles } from "../../utils/FetchRequest.ts";
 import ArticleCards from "./ArticleCards.tsx";
 import { LoadingScreen } from "../../components/LoadingScreen.tsx";
 import { Article } from "../../types/data.ts";
+import { UserContext } from "../../context/user/user.tsx";
 
 function ArticleComponent() {
   const [articles, setArticles] = useState<Article[]>([]);
@@ -10,6 +11,17 @@ function ArticleComponent() {
   const [teams, setTeams] = useState<string[]>([]);
   const [selectedSports, setSelectedSports] = useState<string[]>([]);
   const [selectedTeams, setSelectedTeams] = useState<string[]>([]);
+  const userData = useContext(UserContext);
+
+  useEffect(() => {
+    if (
+      userData?.currentUser?.preferences.sports &&
+      userData?.currentUser?.preferences.teams
+    ) {
+      setSelectedSports(userData.currentUser.preferences.sports);
+      setSelectedTeams(userData.currentUser.preferences.teams);
+    }
+  }, [userData]);
 
   const setSportsFilter = (filter: string) => {
     if (selectedSports.includes(filter)) {
@@ -114,6 +126,8 @@ function ArticleComponent() {
           setTeamsFilter={setTeamsFilter}
           selectedSports={selectedSports}
           selectedTeams={selectedTeams}
+          setSelectedSports={setSelectedSports}
+          setSelectedTeams={setSelectedTeams}
         />
       </div>
     );
