@@ -24,7 +24,8 @@ const Login = () => {
   const [remember, setRemember] = useState<boolean>(false);
   const [currentUser] = useState(() => {
     const user =
-      localStorage.getItem("auth_token") || sessionStorage.getItem("auth_token");
+      localStorage.getItem("auth_token") ||
+      sessionStorage.getItem("auth_token");
     if (user) {
       return user;
     }

@@ -56,5 +56,3 @@ export const MonthConversion = (month: number) => {
       return "Dec";
   }
 };
-
-

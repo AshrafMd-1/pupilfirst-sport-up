@@ -4,6 +4,7 @@ import Dashboard from "../pages/Homepage/Dashboard/Dashboard.tsx";
 import { ErrorPage } from "../components/ErrorPage.tsx";
 import Login from "../pages/Authenticate/auth/Login.tsx";
 import Signup from "../pages/Authenticate/auth/Signup.tsx";
+import { AccountDetails } from "../pages/Account";
 
 const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Signup />,
+  },
+  {
+    path: "/account",
+    element: <AccountDetails />,
   },
   {
     path: "*",

@@ -40,8 +40,8 @@ export interface MatchDetail extends Match {
 }
 
 export interface Preference {
-  preferences:{
+  preferences: {
     sports?: string[];
     teams?: string[];
-  }
+  };
 }

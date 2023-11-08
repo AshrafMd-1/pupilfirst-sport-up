@@ -1,16 +1,15 @@
 import { Dialog, Transition } from "@headlessui/react";
-import {Fragment, useContext, useEffect, useState} from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { getArticleDetail } from "../../utils/FetchRequest.ts";
 import { LoadingScreen } from "../../components/LoadingScreen.tsx";
 import { MonthConversion } from "../../utils/UtilityFunctions.ts";
 import { Article, ArticleDetail } from "../../types/data.ts";
-import {ThemeContext} from "../../context/theme.tsx";
+import { ThemeContext } from "../../context/theme.tsx";
 
 export default function ArticleCard(props: { article: Article }) {
   const [isOpen, setIsOpen] = useState(false);
   const [articleData, setArticleData] = useState<ArticleDetail>();
-   const { theme } = useContext(ThemeContext);
-
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     if (isOpen) {
@@ -70,7 +69,9 @@ export default function ArticleCard(props: { article: Article }) {
                   {props.article.summary}
                 </p>
                 <div className="mt-4 flex items-center justify-between">
-                  <div className="badge rounded-badge badge-primary"># {props.article.sport.name}</div>
+                  <div className="badge rounded-badge badge-primary">
+                    # {props.article.sport.name}
+                  </div>
                 </div>
               </div>
             </div>
@@ -103,7 +104,10 @@ export default function ArticleCard(props: { article: Article }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel data-theme={theme} className="w-full border-x border-t lg:max-w-2xl max-w-md transform overflow-hidden rounded-2xl  p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel
+                  data-theme={theme}
+                  className="w-full border-x border-t lg:max-w-2xl max-w-md transform overflow-hidden rounded-2xl  p-6 text-left align-middle shadow-xl transition-all"
+                >
                   {articleData ? (
                     <>
                       <span className="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-green-300 via-blue-500 to-purple-600"></span>
@@ -133,9 +137,7 @@ export default function ArticleCard(props: { article: Article }) {
 
                       <dl className="mt-6 flex text-center justify-evenly gap-4 sm:gap-6">
                         <div className="flex flex-col-reverse">
-                          <dt className="text-md font-medium ">
-                            Published
-                          </dt>
+                          <dt className="text-md font-medium ">Published</dt>
                           <dd className="text-md text-gray-500">
                             {new Date(articleData.date)
                               .toLocaleDateString()
@@ -144,9 +146,7 @@ export default function ArticleCard(props: { article: Article }) {
                         </div>
 
                         <div className="flex text-center flex-col-reverse">
-                          <dt className="text-md font-medium">
-                            Sport
-                          </dt>
+                          <dt className="text-md font-medium">Sport</dt>
                           <dd className="text-md text-gray-500">
                             {articleData.sport.name}
                           </dd>
@@ -174,9 +174,7 @@ export default function ArticleCard(props: { article: Article }) {
                               <span className="text-sm text-gray-500">
                                 {articleData.teams[0].name}
                               </span>
-                              <span className="text-md  font-bold">
-                                vs
-                              </span>
+                              <span className="text-md  font-bold">vs</span>
                               <span className="text-sm text-gray-500">
                                 {articleData.teams[1].name}
                               </span>

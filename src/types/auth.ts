@@ -1,4 +1,3 @@
-
 type NameChange = {
   type: "name_change";
   value: string;
