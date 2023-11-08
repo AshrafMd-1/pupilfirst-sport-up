@@ -1,13 +1,13 @@
-import {LoginReducerAction, LoginUser} from "../../../types/auth.ts";
-import {useEffect, useReducer, useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {AuthContainer} from "../AuthContainer.tsx";
+import { LoginReducerAction, LoginUser } from "../../../types/auth.ts";
+import { useEffect, useReducer, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { AuthContainer } from "../AuthContainer.tsx";
 
 const reducer = (state: LoginUser, action: LoginReducerAction) => {
   switch (action.type) {
-    case "username_change":
-      return { ...state, username: action.value };
-    case "password_change1":
+    case "email_change":
+      return { ...state, email: action.value };
+    case "password_change":
       return { ...state, password: action.value };
     default:
       return state;
@@ -15,7 +15,7 @@ const reducer = (state: LoginUser, action: LoginReducerAction) => {
 };
 
 const initialState: LoginUser = {
-  username: "",
+  email: "",
   password: "",
 };
 
@@ -24,7 +24,7 @@ const Login = () => {
   const [remember, setRemember] = useState<boolean>(false);
   const [currentUser] = useState(() => {
     const user =
-      localStorage.getItem("token") || sessionStorage.getItem("token");
+      localStorage.getItem("auth_token") || sessionStorage.getItem("auth_token");
     if (user) {
       return user;
     }
@@ -36,7 +36,7 @@ const Login = () => {
     if (currentUser) {
       nav("/dashboard");
     }
-  }, [currentUser]);
+  }, [currentUser, nav]);
 
   return (
     <AuthContainer
@@ -45,22 +45,19 @@ const Login = () => {
       formData={formDate}
       remember={remember}
     >
-      <label
-        className="text-black text-xl ml-1 font-bold m-2"
-        htmlFor="username"
-      >
-        Username
+      <label className="text-black text-xl ml-1 font-bold m-2" htmlFor="email">
+        Email
       </label>
       <input
         className="border bg-white border-gray-400 rounded-lg p-2"
         type="text"
-        name="username"
-        id="username"
-        value={formDate.username}
-        placeholder="Username"
+        name="email"
+        id="email"
+        value={formDate.email}
+        placeholder="Email"
         onChange={(e) =>
           dispatch({
-            type: "username_change",
+            type: "email_change",
             value: e.target.value,
           })
         }
@@ -80,7 +77,7 @@ const Login = () => {
         placeholder="Password"
         onChange={(e) =>
           dispatch({
-            type: "password_change1",
+            type: "password_change",
             value: e.target.value,
           })
         }

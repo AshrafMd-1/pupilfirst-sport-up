@@ -1,7 +1,25 @@
 import backgroundImg from "../../../assets/images/background.jpg";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const HomePage = () => {
+  const [currentUser] = useState(() => {
+    const user =
+      localStorage.getItem("auth_token") ||
+      sessionStorage.getItem("auth_token");
+    if (user) {
+      return user;
+    }
+    return null;
+  });
+  const nav = useNavigate();
+
+  useEffect(() => {
+    if (currentUser) {
+      nav("/dashboard");
+    }
+  }, [currentUser, nav]);
+
   return (
     <div
       className="hero min-h-screen "

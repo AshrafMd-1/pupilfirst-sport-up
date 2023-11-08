@@ -1,5 +1,5 @@
-type UsernameChange = {
-  type: "username_change";
+type NameChange = {
+  type: "name_change";
   value: string;
 };
 
@@ -8,31 +8,22 @@ type EmailChange = {
   value: string;
 };
 
-type PasswordChange1 = {
-  type: "password_change1";
+type PasswordChange = {
+  type: "password_change";
   value: string;
 };
 
-type PasswordChange2 = {
-  type: "password_change2";
-  value: string;
-};
+export type SignupReducerAction = NameChange | EmailChange | PasswordChange;
 
-export type SignupReducerAction =
-  | UsernameChange
-  | EmailChange
-  | PasswordChange1
-  | PasswordChange2;
-
-export type LoginReducerAction = UsernameChange | PasswordChange1;
-
-export type RegisterUser = {
-  email: string;
-  username: string;
-  password1: string;
-};
+export type LoginReducerAction = EmailChange | PasswordChange;
 
 export type LoginUser = {
-  username: string;
+  email: string;
+  password: string;
+};
+
+export type RegisterUser = {
+  name: string;
+  email: string;
   password: string;
 };

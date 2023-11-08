@@ -1,4 +1,5 @@
 import { API_ENDPOINT } from "../config/constants";
+
 type RequestMethod = "GET" | "POST" | "PATCH" | "DELETE" | "PUT";
 
 export const request = async (
@@ -10,14 +11,14 @@ export const request = async (
   let payload: string;
   if (method === "GET") {
     const requestParams = new URLSearchParams(data);
-    url =API_ENDPOINT + endpoint + "?" + requestParams.toString();
+    url = API_ENDPOINT + endpoint + "?" + requestParams.toString();
     payload = "";
   } else {
     url = API_ENDPOINT + endpoint;
     payload = data ? JSON.stringify(data) : "";
   }
   const token =
-    localStorage.getItem("token") || sessionStorage.getItem("token");
+    localStorage.getItem("auth_token") || sessionStorage.getItem("auth_token");
   const auth = token ? "Token " + token : "";
 
   const response = await fetch(url, {
@@ -30,10 +31,7 @@ export const request = async (
   });
   if (response.status === 204) {
     return {};
-  } else if (response.ok) {
-    return await response.json();
   } else {
-    const errorJson = await response.json();
-    throw Error(errorJson);
+    return await response.json();
   }
 };

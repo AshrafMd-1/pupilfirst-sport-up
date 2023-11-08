@@ -19,12 +19,12 @@ export const AuthContainer = (props: {
     if (props.title === "Sign Up") {
       try {
         const response = await createUser(props.formData as RegisterUser);
-        if (!response.auth_token) {
+        if (response.auth_token === undefined) {
           setError(response.errors[0]);
         } else {
           props.remember
             ? localStorage.setItem("auth_token", response.auth_token)
-            : sessionStorage.setItem("token", response.auth_token);
+            : sessionStorage.setItem("auth_token", response.auth_token);
           nav("/dashboard");
         }
       } catch (e) {
@@ -33,10 +33,15 @@ export const AuthContainer = (props: {
     } else {
       try {
         const response = await loginUser(props.formData as LoginUser);
-        props.remember
-          ? localStorage.setItem("auth_token", response.auth_token)
-          : sessionStorage.setItem("auth_token", response.auth_token);
-        nav("/dashboard");
+        if (response.auth_token === undefined) {
+          setError(response.errors[0]);
+        } else {
+          console.log(response.auth_token);
+          props.remember
+            ? localStorage.setItem("auth_token", response.auth_token)
+            : sessionStorage.setItem("auth_token", response.auth_token);
+          nav("/dashboard");
+        }
       } catch (e) {
         console.log(e);
       }
@@ -72,7 +77,9 @@ export const AuthContainer = (props: {
               ? "Sign Up"
               : "Login"}
           </button>
-          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+          {error && (
+            <p className="text-red-500 text-xl font-bold mt-2">{error}</p>
+          )}
           <Link
             className="text-blue-500 text-sm mt-2"
             to={props.title === "Sign Up" ? "/login" : "/signup"}

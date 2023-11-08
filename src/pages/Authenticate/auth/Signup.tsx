@@ -1,40 +1,38 @@
 import { RegisterUser, SignupReducerAction } from "../../../types/auth.ts";
 import { useEffect, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {AuthContainer} from "../AuthContainer.tsx";
+import { AuthContainer } from "../AuthContainer.tsx";
 
 const reducer = (state: RegisterUser, action: SignupReducerAction) => {
   switch (action.type) {
-    case "username_change":
-      return { ...state, username: action.value };
+    case "name_change":
+      return { ...state, name: action.value };
     case "email_change":
       return { ...state, email: action.value };
-    case "password_change1":
-      return { ...state, password1: action.value };
-    case "password_change2":
-      return { ...state, password2: action.value };
+    case "password_change":
+      return { ...state, password: action.value };
     default:
       return state;
   }
 };
 
 const initialState: RegisterUser = {
-  username: "",
+  name: "",
   email: "",
-  password1: "",
+  password: "",
 };
 const Signup = () => {
   const [formDate, dispatch] = useReducer(reducer, initialState);
   const [remember, setRemember] = useState<boolean>(false);
   const [currentUser] = useState(() => {
     const user =
-      localStorage.getItem("token") || sessionStorage.getItem("token");
+      localStorage.getItem("auth_token") ||
+      sessionStorage.getItem("auth_token");
     if (user) {
       return user;
     }
     return null;
   });
-
   const nav = useNavigate();
 
   useEffect(() => {
@@ -50,30 +48,24 @@ const Signup = () => {
       formData={formDate}
       remember={remember}
     >
-      <label
-        className="text-black text-xl ml-1 font-bold m-2"
-        htmlFor="username"
-      >
+      <label className="text-black text-xl ml-1 font-bold m-2" htmlFor="name">
         Name
       </label>
       <input
         type="text"
-        name="username"
-        id="username"
-        placeholder="Username"
-        value={formDate.username}
+        name="name"
+        id="name"
+        placeholder="Name"
+        value={formDate.name}
         className="border border-gray-400 bg-white rounded-lg p-2"
         onChange={(e) =>
           dispatch({
-            type: "username_change",
+            type: "name_change",
             value: e.target.value,
           })
         }
       />
-      <label
-        className="text-black text-xl ml-1 font-bold m-2"
-        htmlFor="email"
-      >
+      <label className="text-black text-xl ml-1 font-bold m-2" htmlFor="email">
         Email
       </label>
       <input
@@ -92,20 +84,20 @@ const Signup = () => {
       />
       <label
         className="text-black text-xl ml-1 font-bold m-2"
-        htmlFor="password1"
+        htmlFor="password"
       >
         Password
       </label>
       <input
         className="border bg-white border-gray-400 rounded-lg p-2"
         type="password"
-        name="password1"
+        name="password"
         id="password1"
         placeholder="Password"
-        value={formDate.password1}
+        value={formDate.password}
         onChange={(e) => {
           dispatch({
-            type: "password_change1",
+            type: "password_change",
             value: e.target.value,
           });
         }}
