@@ -45,7 +45,7 @@ export default function MatchCard(props: { match: Match }) {
       <div className="inset-0 flex gap-2 items-center justify-center">
         <div
           className="cursor-pointer man-w-fit rounded-xl flex flex-row-reverse items-center  justify-evenly border-2  p-8 shadow-xl transition hover:border-black-500/10 hover:shadow-pink-500/10"
-          style={{ width: "30rem", height: "10rem" }}
+          style={{ width: "30rem", height: "10.5rem" }}
         >
           <button
             onClick={fetchMatchDetail}
@@ -96,21 +96,28 @@ export default function MatchCard(props: { match: Match }) {
                   </p>
                 </div>
               ) : (
-                <span className="loading loading-dots loading-xs"></span>
+                <span className="loading loading-bars loading-sm"></span>
               )}
             </div>
 
             <div>
               {matchData ? (
-                <div className="flex justify-evenly items-center">
-                  <div className="flex gap-3 items-center">
+                <div className="flex justify-evenly items-center gap-3">
+                  <div className="flex gap-2 items-center">
                     <p
                       className={`${
                         matchData.score[matchData.teams[0].name] >
                         matchData.score[matchData.teams[1].name]
                           ? "text-green-500"
                           : "text-red-500"
-                      }`}
+                      } ${
+                        matchData.teams.find(
+                          (team) => team.id === matchData.playingTeam,
+                        )?.name === matchData.teams[0].name &&
+                        TimeRemaining(props.match.endsAt) !== -1
+                          ? "font-bold"
+                          : ""
+                      } `}
                     >
                       {matchData.teams[0].name} :{" "}
                       {matchData.score[matchData.teams[0].name]}
@@ -123,7 +130,14 @@ export default function MatchCard(props: { match: Match }) {
                         matchData.score[matchData.teams[1].name]
                           ? "text-green-500"
                           : "text-red-500"
-                      }`}
+                      }${
+                        matchData.teams.find(
+                          (team) => team.id === matchData.playingTeam,
+                        )?.name === matchData.teams[1].name &&
+                        TimeRemaining(props.match.endsAt) !== -1
+                          ? "font-bold"
+                          : ""
+                      } `}
                     >
                       {matchData.teams[1].name} :{" "}
                       {matchData.score[matchData.teams[1].name]}
@@ -131,7 +145,18 @@ export default function MatchCard(props: { match: Match }) {
                   </div>
                 </div>
               ) : (
-                <span className="loading loading-dots loading-xs"></span>
+                <span className="loading loading-bars loading-sm"></span>
+              )}
+            </div>
+            {}
+            <div className="flex flex-row">
+              <dt className="text-md font-medium">Ends At :</dt>
+              {TimeRemaining(props.match.endsAt) === -1 ? (
+                <dd className="text-md ml-1">Ended</dd>
+              ) : (
+                <dd className="text-md font-bold ml-1">
+                  {TimeRemainingFormatted(props.match.endsAt)}
+                </dd>
               )}
             </div>
           </div>
@@ -152,7 +177,7 @@ export default function MatchCard(props: { match: Match }) {
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto">
+          <div className="fixed backdrop-blur inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-4 text-center">
               <Transition.Child
                 as={Fragment}
@@ -219,17 +244,17 @@ export default function MatchCard(props: { match: Match }) {
                               matchData.score[matchData.teams[1].name]
                                 ? "text-green-500"
                                 : "text-red-500"
-                            }`}
+                            } `}
                           >
                             {matchData.teams[0].name} :{" "}
                             {matchData.score[matchData.teams[0].name]}
                           </p>
                           <p
                             className={`${
-                              matchData.score[matchData.teams[0].name] <
+                              matchData.score[matchData.teams[0].name] >
                               matchData.score[matchData.teams[1].name]
-                                ? "text-green-500"
-                                : "text-red-500"
+                                ? "text-red-500"
+                                : "text-green-500"
                             }`}
                           >
                             {matchData.teams[1].name} :

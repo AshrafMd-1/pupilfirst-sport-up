@@ -2,10 +2,10 @@ import ErrorBoundary from "../../components/ErrorBoundary.tsx";
 import { Suspense } from "react";
 import { LoadingScreen } from "../../components/LoadingScreen.tsx";
 import Navbar from "../../components/Navbar.tsx";
-import { ChangePassword } from "./ChangePassword.tsx";
+import { UserDetails } from "./UserDetails.tsx";
 import { UserProvider } from "../../context/user/user.tsx";
 
-export const ChangePasswordContainer = () => {
+export const AccountDetails = () => {
   return (
     <UserProvider>
       <ErrorBoundary>
@@ -15,7 +15,7 @@ export const ChangePasswordContainer = () => {
       </ErrorBoundary>
       <ErrorBoundary>
         <Suspense fallback={<LoadingScreen />}>
-          <ChangePassword />
+          <UserDetails />
         </Suspense>
       </ErrorBoundary>
     </UserProvider>

@@ -1,5 +1,5 @@
 import { request } from "./FetchPrototype.ts";
-import { LoginUser, RegisterUser } from "../types/auth.ts";
+import { ChangePassword, LoginUser, RegisterUser } from "../types/auth.ts";
 import { Preference } from "../types/data.ts";
 
 export const getArticles = async () => {
@@ -38,4 +38,8 @@ export const logoutUser = () => {
 
 export const sendPreferences = async (data: Preference) => {
   return await request("/user/preferences", "PATCH", data);
+};
+
+export const changePassword = async (data: ChangePassword) => {
+  return await request("/user/password", "PATCH", data);
 };

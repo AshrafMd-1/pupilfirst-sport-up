@@ -92,7 +92,7 @@ export default function Preferences(props: {
             <div className="fixed inset-0 bg-black/25" />
           </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto">
+          <div className="fixed inset-0 backdrop-blur overflow-y-auto">
             <div className="flex min-h-full items-center justify-center p-6 text-center">
               <Transition.Child
                 as={Fragment}
@@ -105,7 +105,7 @@ export default function Preferences(props: {
               >
                 <Dialog.Panel
                   data-theme={theme}
-                  className="w-full max-w-md transform overflow-hidden rounded-2xl  p-6 text-left align-middle shadow-xl transition-all"
+                  className="w-full max-w-xl transform overflow-hidden rounded-2xl p-6 text-left align-middle shadow-xl transition-all"
                 >
                   <div className="flex items-center justify-center">
                     <FilterSelection

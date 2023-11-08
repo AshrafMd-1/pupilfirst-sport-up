@@ -37,3 +37,8 @@ export type User = {
     teams?: string[];
   };
 };
+
+export type ChangePassword = {
+  current_password: string;
+  new_password: string;
+};
