@@ -72,7 +72,7 @@ export default function Preferences(props: {
         <button
           type="button"
           onClick={openModal}
-          className="rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
+          className="bg-black/20 px-4 py-2 border-2 rounded-btn text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
         >
           Preferences
         </button>
@@ -93,7 +93,7 @@ export default function Preferences(props: {
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
+            <div className="flex min-h-full items-center justify-center p-6 text-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"

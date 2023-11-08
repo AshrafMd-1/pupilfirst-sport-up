@@ -26,10 +26,7 @@ function Dashboard() {
             <MatchComponent />
           </Suspense>
         </ErrorBoundary>
-        <hr
-          className="border-4 my-4 w-full rounded-2xl"
-          style={{ borderColor: "#1f2937" }}
-        />
+        <hr className="border-4 my-4 w-full rounded-2xl" />
         <ErrorBoundary>
           <Suspense fallback={<LoadingScreen />}>
             <ArticleComponent />

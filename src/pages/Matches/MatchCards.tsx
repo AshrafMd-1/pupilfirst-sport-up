@@ -5,7 +5,7 @@ function MatchCards(props: { matches: Match[] }) {
   return (
     <div className="mx-12">
       <h1 className="text-3xl font-bold text-center">Matches</h1>
-      <div className="carousel mt-3 carousel-center max-w-full p-4 space-x-4 rounded-box">
+      <div className=" mt-3 carousel-center max-w-full overflow-auto p-4 space-x-4 rounded-box">
         <div className="carousel-item">
           {props.matches.map((match) => {
             return (

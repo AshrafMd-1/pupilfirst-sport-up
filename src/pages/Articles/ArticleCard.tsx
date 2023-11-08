@@ -139,9 +139,16 @@ export default function ArticleCard(props: { article: Article }) {
                         <div className="flex flex-col-reverse">
                           <dt className="text-md font-medium ">Published</dt>
                           <dd className="text-md text-gray-500">
-                            {new Date(articleData.date)
-                              .toLocaleDateString()
-                              .replace(/\//g, "-")}
+                            {MonthConversion(
+                              new Date(articleData.date).getMonth(),
+                            ) +
+                              " " +
+                              new Date(articleData.date).getDate() +
+                              ", " +
+                              new Date(articleData.date)
+                                .getFullYear()
+                                .toString()
+                                .replace(/\//g, "-")}
                           </dd>
                         </div>
 

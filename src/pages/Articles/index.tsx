@@ -117,7 +117,7 @@ function ArticleComponent() {
     );
   } else {
     return (
-      <div>
+      <div className="p-2">
         <ArticleCards
           articles={sortArticles(articles)}
           sports={sports}

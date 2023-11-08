@@ -867,7 +867,7 @@ define(['exports'], (function (exports) { 'use strict';
         }
         {
           // We have a handler, meaning Workbox is going to handle the route.
-          // print the routing userDetails to the console.
+          // print the routing details to the console.
           logger.groupCollapsed(`Router is responding to: ${getFriendlyURL(url)}`);
           debugMessages.forEach(msg => {
             if (Array.isArray(msg)) {
@@ -2557,7 +2557,7 @@ define(['exports'], (function (exports) { 'use strict';
         {
           const cacheKey = params.cacheKey || (await handler.getCacheKey(request, 'read'));
           // Workbox is going to handle the route.
-          // print the routing userDetails to the console.
+          // print the routing details to the console.
           logger.groupCollapsed(`Precaching is responding to: ` + getFriendlyURL(request.url));
           logger.log(`Serving the precached url: ${getFriendlyURL(cacheKey instanceof Request ? cacheKey.url : cacheKey)}`);
           logger.groupCollapsed(`View request details here.`);
