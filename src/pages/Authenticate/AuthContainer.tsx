@@ -55,7 +55,7 @@ export const AuthContainer = (props: {
       </div>
       <div className="flex flex-col justify-center w-10/12 lg:w-6/12 md:w-7/12  xl:w-4/12 bg-white rounded-lg  shadow-lg p-12 m-4">
         <div className="flex justify-center mb-4  flex-col">
-          <h1 className="text-3xl font-bold pb-1">{props.title}</h1>
+          <h1 className="text-3xl text-black font-bold pb-1">{props.title}</h1>
           <p className="text-gray-500 mt-1 text-sm">{props.description}</p>
         </div>
         {props.children}
@@ -83,22 +83,20 @@ export const AuthContainer = (props: {
           </Link>
         </div>
       </div>
-      <div
-        className="flex justify-center items-center gap-3"
+      <div className="flex justify-center items-center gap-3">
+        <Link
+          className="bg-gray-800 hover:bg-black text-white text-2xl mt-2 py-2 px-4 rounded"
+          to={"/"}
         >
-      <Link
-        className="bg-gray-800 hover:bg-black text-white text-2xl mt-2 py-2 px-4 rounded"
-        to={"/"}
-      >
-        Back to Home
-      </Link>
-      <Link
-        className="bg-gray-800 hover:bg-black text-white text-2xl mt-2 py-2 px-4 rounded"
-        to={"/dashboard"}
-      >
-        Guest Login
-      </Link>
-        </div>
+          Back to Home
+        </Link>
+        <Link
+          className="bg-gray-800 hover:bg-black text-white text-2xl mt-2 py-2 px-4 rounded"
+          to={"/dashboard"}
+        >
+          Guest Login
+        </Link>
+      </div>
     </div>
   );
 };

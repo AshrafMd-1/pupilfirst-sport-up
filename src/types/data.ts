@@ -32,14 +32,7 @@ export interface Match {
   teams: Team[];
 }
 
-export interface MatchDetail {
-  id: number;
-  name: string;
-  location: string;
-  sportName: string;
-  endsAt: string;
-  isRunning: boolean;
-  teams: Team[];
+export interface MatchDetail extends Match {
   playingTeam: number;
   story: string;
   startsAt: string;

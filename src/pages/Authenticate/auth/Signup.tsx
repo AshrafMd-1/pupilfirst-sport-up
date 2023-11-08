@@ -51,7 +51,7 @@ const Signup = () => {
       remember={remember}
     >
       <label
-        className="text-grey-800 text-xl ml-1 font-bold m-2"
+        className="text-black text-xl ml-1 font-bold m-2"
         htmlFor="username"
       >
         Name
@@ -62,7 +62,7 @@ const Signup = () => {
         id="username"
         placeholder="Username"
         value={formDate.username}
-        className="border border-gray-400 rounded-lg p-2"
+        className="border border-gray-400 bg-white rounded-lg p-2"
         onChange={(e) =>
           dispatch({
             type: "username_change",
@@ -71,13 +71,13 @@ const Signup = () => {
         }
       />
       <label
-        className="text-grey-800 text-xl ml-1 font-bold m-2"
+        className="text-black text-xl ml-1 font-bold m-2"
         htmlFor="email"
       >
         Email
       </label>
       <input
-        className="border border-gray-400 rounded-lg p-2"
+        className="border bg-white border-gray-400 rounded-lg p-2"
         type="email"
         name="email"
         id="email"
@@ -91,13 +91,13 @@ const Signup = () => {
         }}
       />
       <label
-        className="text-grey-800 text-xl ml-1 font-bold m-2"
+        className="text-black text-xl ml-1 font-bold m-2"
         htmlFor="password1"
       >
         Password
       </label>
       <input
-        className="border border-gray-400 rounded-lg p-2"
+        className="border bg-white border-gray-400 rounded-lg p-2"
         type="password"
         name="password1"
         id="password1"
@@ -121,7 +121,7 @@ const Signup = () => {
             setRemember(e.target.checked);
           }}
         />
-        <label className="text-grey-400   ml-2" htmlFor="remember">
+        <label className="text-black   ml-2" htmlFor="remember">
           Remember Me
         </label>
       </div>

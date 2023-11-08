@@ -46,13 +46,13 @@ const Login = () => {
       remember={remember}
     >
       <label
-        className="text-grey-800 text-xl ml-1 font-bold m-2"
+        className="text-black text-xl ml-1 font-bold m-2"
         htmlFor="username"
       >
         Username
       </label>
       <input
-        className="border border-gray-400 rounded-lg p-2"
+        className="border bg-white border-gray-400 rounded-lg p-2"
         type="text"
         name="username"
         id="username"
@@ -66,13 +66,13 @@ const Login = () => {
         }
       />
       <label
-        className="text-grey-800 text-xl ml-1 font-bold m-2"
+        className="text-black text-xl ml-1 font-bold m-2"
         htmlFor="password"
       >
         Password
       </label>
       <input
-        className="border border-gray-400 rounded-lg p-2"
+        className="border bg-white border-gray-400 rounded-lg p-2"
         type="password"
         name="password"
         id="password"
@@ -85,9 +85,9 @@ const Login = () => {
           })
         }
       />
-      <div className="flex justify-start m-2 items-center">
+      <div className="flex bg-white  justify-start m-2 items-center">
         <input
-          className="border border-gray-400 rounded-lg p-2 "
+          className="border  border-gray-400 rounded-lg p-2 "
           type="checkbox"
           name="remember"
           id="remember"
@@ -96,7 +96,7 @@ const Login = () => {
             setRemember(e.target.checked);
           }}
         />
-        <label className="text-grey-400   ml-2" htmlFor="remember">
+        <label className="text-black  ml-2" htmlFor="remember">
           Remember Me
         </label>
       </div>

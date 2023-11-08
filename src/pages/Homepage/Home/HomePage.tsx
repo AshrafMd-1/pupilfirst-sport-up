@@ -4,16 +4,16 @@ import { Link } from "react-router-dom";
 const HomePage = () => {
   return (
     <div
-      className="hero min-h-screen"
+      className="hero min-h-screen "
       style={{
         backgroundImage: `url(${backgroundImg})`,
       }}
     >
-      <div className="hero-overlay bg-opacity-60"></div>
+      <div className="hero-overlay bg-black  bg-opacity-60"></div>
       <div className="hero-content text-center text-neutral-content">
         <div className="max-w-lg">
-          <h1 className="mb-5 text-5xl font-bold">SportUp</h1>
-          <p className="mb-5 text-2xl">
+          <h1 className="mb-5 text-5xl text-white font-bold">SportUp</h1>
+          <p className="mb-5 text-white text-2xl">
             SportUp revolutionizes the way you keep score in sports events with
             its intuitive score board feature. Whether you're at a little league
             game, a weekend pickup match, or a competitive tournament, SportUp

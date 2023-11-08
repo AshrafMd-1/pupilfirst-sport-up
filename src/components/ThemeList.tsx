@@ -3,7 +3,31 @@ import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { ThemeContext } from "../context/theme.tsx";
 
-
+const themes = [
+  { name: "light" },
+  { name: "dark" },
+  { name: "cupcake" },
+  { name: "bumblebee" },
+  { name: "emerald" },
+  { name: "corporate" },
+  { name: "synthwave" },
+  { name: "halloween" },
+  { name: "forest" },
+  { name: "aqua" },
+  { name: "lofi" },
+  { name: "pastel" },
+  { name: "fantasy" },
+  { name: "wireframe" },
+  { name: "black" },
+  { name: "luxury" },
+  { name: "dracula" },
+  { name: "cmyk" },
+  { name: "business" },
+  { name: "acid" },
+  { name: "lemonade" },
+  { name: "night" },
+  { name: "winter" },
+];
 
 export default function ThemeList() {
   const { theme, setTheme } = useContext(ThemeContext);

@@ -10,7 +10,7 @@ function MatchCards(props: { matches: Match[] }) {
           {props.matches.map((match) => {
             return (
               <div key={match.id} className="mx-2">
-                <MatchCard match={match} />;
+                <MatchCard match={match} />
               </div>
             );
           })}{" "}

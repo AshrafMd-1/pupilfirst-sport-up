@@ -161,34 +161,25 @@ export default function MatchCard(props: { match: Match }) {
                         <div>
                           <p
                             className={`${
-                              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                              // @ts-ignore
                               Number(matchData.score[matchData.teams[0].name]) >
-                              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                              // @ts-ignore
                               Number(matchData.score[matchData.teams[1].name])
                                 ? "text-green-500"
                                 : "text-red-500"
                             }`}
                           >
                             {matchData.teams[0].name} :{" "}
-                            {/*{matchData.score[matchData.teams[0].name]}*/}
+                            {matchData.score[matchData.teams[0].name]}
                           </p>
                           <p
                             className={`${
-                              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                              // @ts-ignore
                               matchData.score[matchData.teams[0].name] <
-                              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                              // @ts-ignore
                               matchData.score[matchData.teams[1].name]
                                 ? "text-green-500"
                                 : "text-red-500"
                             }`}
                           >
                             {matchData.teams[1].name} :
-
-                            {/*{matchData.score[matchData.teams[1].name]}*/}
+                            {matchData.score[matchData.teams[1].name]}
                           </p>
                         </div>
                       </div>
