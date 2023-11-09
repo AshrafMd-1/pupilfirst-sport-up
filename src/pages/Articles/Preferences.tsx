@@ -44,6 +44,8 @@ export default function Preferences(props: {
   };
 
   function closeModal() {
+    setSelectedTeams(props.selectedTeams);
+    setSelectedSports(props.selectedSports);
     setIsOpen(false);
   }
 

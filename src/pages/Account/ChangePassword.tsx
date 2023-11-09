@@ -50,7 +50,7 @@ export const ChangePassword = () => {
   };
 
   return (
-    <div className="flex bg-white  flex-col justify-center items-center">
+    <div className="flex h-screen flex-col items-center">
       <label className=" text-xl ml-1 font-bold m-2" htmlFor="oldPassword">
         Old Password
       </label>
@@ -65,10 +65,7 @@ export const ChangePassword = () => {
           setFormData({ ...formData, currentPassword: e.target.value })
         }
       />
-      <label
-        className="text-black text-xl ml-1 font-bold m-2"
-        htmlFor="newPassword"
-      >
+      <label className="text-xl ml-1 font-bold m-2" htmlFor="newPassword">
         New Password
       </label>
       <input
@@ -83,7 +80,7 @@ export const ChangePassword = () => {
         }
       />
       {
-        <p className="text-red-500 text-center font-bold">
+        <p className="text-red-500 my-1 text-center font-bold">
           {errors ? errors : ""}
         </p>
       }

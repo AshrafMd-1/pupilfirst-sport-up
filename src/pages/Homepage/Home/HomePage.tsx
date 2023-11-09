@@ -1,6 +1,6 @@
 import backgroundImg from "../../../assets/images/background.jpg";
-import { Link, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const HomePage = () => {
   const [currentUser] = useState(() => {
@@ -12,13 +12,6 @@ const HomePage = () => {
     }
     return null;
   });
-  const nav = useNavigate();
-
-  useEffect(() => {
-    if (currentUser) {
-      nav("/dashboard");
-    }
-  }, [currentUser, nav]);
 
   return (
     <div
@@ -40,24 +33,35 @@ const HomePage = () => {
             today!
           </p>
           <div className="flex space-x-4 justify-center items-center border-t-2 border-white pt-4 ">
-            <Link
-              className="btn font-bold tracking-wider border-2 border-white text-white bg-transparent py-4 px-6 text-center no-underline  mt-3 transition-all duration-500 ease-in-out rounded-3xl hover:bg-white hover:text-black"
-              to={"/signup"}
-            >
-              Get Started
-            </Link>
-            <Link
-              className="btn font-bold tracking-wider border-2 border-white text-white bg-transparent py-4 px-6 text-center no-underline mt-3 transition-all duration-500 ease-in-out rounded-3xl hover:bg-white hover:text-black "
-              to={"/login"}
-            >
-              Login
-            </Link>
-            <Link
-              className="btn font-bold tracking-wider border-2 border-white text-white bg-transparent py-4 px-6 text-center no-underline mt-3 transition-all duration-500 ease-in-out rounded-3xl hover:bg-white hover:text-black "
-              to={"/dashboard"}
-            >
-              Guest
-            </Link>
+            {currentUser ? (
+              <Link
+                className="btn font-bold tracking-wider border-2 border-white text-white bg-transparent py-4 px-6 text-center no-underline  mt-3 transition-all duration-500 ease-in-out rounded-3xl hover:bg-white hover:text-black"
+                to={"/dashboard"}
+              >
+                Dashboard
+              </Link>
+            ) : (
+              <>
+                <Link
+                  className="btn font-bold tracking-wider border-2 border-white text-white bg-transparent py-4 px-6 text-center no-underline  mt-3 transition-all duration-500 ease-in-out rounded-3xl hover:bg-white hover:text-black"
+                  to={"/signup"}
+                >
+                  Get Started
+                </Link>
+                <Link
+                  className="btn font-bold tracking-wider border-2 border-white text-white bg-transparent py-4 px-6 text-center no-underline mt-3 transition-all duration-500 ease-in-out rounded-3xl hover:bg-white hover:text-black "
+                  to={"/login"}
+                >
+                  Login
+                </Link>
+                <Link
+                  className="btn font-bold tracking-wider border-2 border-white text-white bg-transparent py-4 px-6 text-center no-underline mt-3 transition-all duration-500 ease-in-out rounded-3xl hover:bg-white hover:text-black "
+                  to={"/dashboard"}
+                >
+                  Guest
+                </Link>
+              </>
+            )}
           </div>
         </div>
       </div>
