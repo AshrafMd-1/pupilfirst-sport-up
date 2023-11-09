@@ -53,8 +53,8 @@ export const AuthContainer = (props: {
       <div className="flex justify-center items-center flex-col">
         <img src={logo} className=" w-2/12 " alt="logo" />
         <p className="text-3xl font-bold">
-          <span className="text-green-400">Task</span>
-          <span className="text-blue-500">Tide</span>
+          <span className="text-green-400">Sport</span>
+          <span className="text-blue-500">Up</span>
         </p>
       </div>
       <div className="flex flex-col justify-center w-10/12 lg:w-6/12 md:w-7/12  xl:w-4/12 bg-white rounded-lg  shadow-lg p-12 m-4">
