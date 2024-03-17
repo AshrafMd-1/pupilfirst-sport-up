@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
 import { changePassword } from "../../utils/FetchRequest.ts";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const ChangePassword = () => {
   const [formData, setFormData] = useState({
     currentPassword: "",
     newPassword: "",
   });
+  const { t } = useTranslation();
   const [errors, setErrors] = useState<string>("");
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const nav = useNavigate();
@@ -52,7 +54,7 @@ export const ChangePassword = () => {
   return (
     <div className="flex h-screen flex-col items-center">
       <label className=" text-xl ml-1 font-bold m-2" htmlFor="oldPassword">
-        Old Password
+        Old {t("Password")}
       </label>
       <input
         className="border bg-white border-gray-400 rounded-lg p-2"
@@ -66,7 +68,7 @@ export const ChangePassword = () => {
         }
       />
       <label className="text-xl ml-1 font-bold m-2" htmlFor="newPassword">
-        New Password
+        New {t("Password")}
       </label>
       <input
         className="border bg-white border-gray-400 rounded-lg p-2"

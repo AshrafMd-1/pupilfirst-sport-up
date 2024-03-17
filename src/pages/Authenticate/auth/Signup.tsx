@@ -2,6 +2,7 @@ import { RegisterUser, SignupReducerAction } from "../../../types/auth.ts";
 import { useEffect, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContainer } from "../AuthContainer.tsx";
+import { useTranslation } from "react-i18next";
 
 const reducer = (state: RegisterUser, action: SignupReducerAction) => {
   switch (action.type) {
@@ -34,6 +35,7 @@ const Signup = () => {
     return null;
   });
   const nav = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (currentUser) {
@@ -49,13 +51,13 @@ const Signup = () => {
       remember={remember}
     >
       <label className="text-black text-xl ml-1 font-bold m-2" htmlFor="name">
-        Name
+        {t("Name")}
       </label>
       <input
         type="text"
         name="name"
         id="name"
-        placeholder="Name"
+        placeholder={t("Name")}
         value={formDate.name}
         className="border border-gray-400 bg-white rounded-lg p-2"
         onChange={(e) =>
@@ -66,7 +68,7 @@ const Signup = () => {
         }
       />
       <label className="text-black text-xl ml-1 font-bold m-2" htmlFor="email">
-        Email
+        {t("Email")}
       </label>
       <input
         className="border bg-white border-gray-400 rounded-lg p-2"
@@ -86,7 +88,7 @@ const Signup = () => {
         className="text-black text-xl ml-1 font-bold m-2"
         htmlFor="password"
       >
-        Password
+        {t("Password")}
       </label>
       <input
         className="border bg-white border-gray-400 rounded-lg p-2"

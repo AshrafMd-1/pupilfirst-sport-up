@@ -8,13 +8,14 @@ import {
 import { LoadingScreen } from "../../components/LoadingScreen.tsx";
 import { Match, MatchDetail } from "../../types/data.ts";
 import { ThemeContext } from "../../context/theme.tsx";
+import { useTranslation } from "react-i18next";
 
 export default function MatchCard(props: { match: Match }) {
   const [isOpen, setIsOpen] = useState(false);
   const [matchData, setMatchData] = useState<MatchDetail>();
   const [isLoaded, setIsLoaded] = useState(false);
   const theme = useContext(ThemeContext);
-
+  const { t } = useTranslation();
   const fetchMatchDetail = async () => {
     setIsLoaded(true);
     const res = await getMatchDetail(props.match.id);
@@ -48,7 +49,7 @@ export default function MatchCard(props: { match: Match }) {
             {isLoaded ? (
               <span className="loading loading-dots loading-md"></span>
             ) : (
-              "Refresh"
+              t("Refresh")
             )}
           </button>
           <div onClick={openModal}>
@@ -213,7 +214,7 @@ export default function MatchCard(props: { match: Match }) {
                               {isLoaded ? (
                                 <span className="loading loading-dots loading-md"></span>
                               ) : (
-                                "Refresh"
+                                t("Refresh")
                               )}
                             </button>
                           </div>

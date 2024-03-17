@@ -1,22 +1,39 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/user/user.tsx";
 import { dayNightEmoji } from "../utils/UtilityFunctions.ts";
+import { useTranslation } from "react-i18next";
 
 export default function UserWelcome() {
+  const date = new Date();
+  const {i18n} = useTranslation();
+
+  // Create a date formatter for a specific locale
+  const dateFormatter = new Intl.DateTimeFormat(i18n.language, {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+  const timeFormatter = new Intl.DateTimeFormat(i18n.language, {
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  });
+
   const userData = useContext(UserContext);
-  const [time, setTime] = useState(new Date().toString().slice(15, 21));
+  const [time, setTime] = useState(timeFormatter.format(new Date()).toString());
+  const { t } = useTranslation();
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setTime(new Date().toString().slice(15, 21));
-    }, 30000);
+      setTime(timeFormatter.format(new Date()).toString());
+    }, 1000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <div className="max-w-4xl px-5 py-2">
       <h1 className="text-4xl my-3">
-        <span>Welcome back,</span>
+        <span>{t("Welcome")} back,</span>
         <span className="font-bold" style={{ textTransform: "capitalize" }}>
           &nbsp;
           {userData.currentUser?.name ? userData.currentUser?.name : "Guest"}
@@ -28,7 +45,7 @@ export default function UserWelcome() {
 
           <span className=" font-bold" style={{ textTransform: "capitalize" }}>
             &nbsp;
-            {new Date().toString().slice(0, 15)}
+            {dateFormatter.format(date)}
           </span>
         </p>
       </div>

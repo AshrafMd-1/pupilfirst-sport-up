@@ -3,6 +3,7 @@ import React from "react";
 import { LoginUser, RegisterUser } from "../../types/auth.ts";
 import { createUser, loginUser } from "../../utils/FetchRequest.ts";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 export const AuthContainer = (props: {
   children: React.ReactNode;
@@ -11,6 +12,7 @@ export const AuthContainer = (props: {
   formData: RegisterUser | LoginUser;
   remember: boolean;
 }) => {
+  const { t } = useTranslation();
   const [error, setError] = React.useState<string>("");
   const [loading, setLoading] = React.useState<boolean>(false);
   const nav = useNavigate();
@@ -104,7 +106,7 @@ export const AuthContainer = (props: {
           className="bg-gray-800 hover:bg-black text-white text-2xl mt-2 py-2 px-4 rounded"
           to={"/dashboard"}
         >
-          Guest Login
+          {t("Guest")} Login
         </Link>
       </div>
     </div>

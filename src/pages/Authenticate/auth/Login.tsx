@@ -2,6 +2,7 @@ import { LoginReducerAction, LoginUser } from "../../../types/auth.ts";
 import { useEffect, useReducer, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContainer } from "../AuthContainer.tsx";
+import { useTranslation } from "react-i18next";
 
 const reducer = (state: LoginUser, action: LoginReducerAction) => {
   switch (action.type) {
@@ -32,6 +33,7 @@ const Login = () => {
     return null;
   });
   const nav = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (currentUser) {
@@ -47,7 +49,7 @@ const Login = () => {
       remember={remember}
     >
       <label className="text-black text-xl ml-1 font-bold m-2" htmlFor="email">
-        Email
+        {t("Email")}
       </label>
       <input
         className="border bg-white border-gray-400 rounded-lg p-2"
@@ -67,7 +69,7 @@ const Login = () => {
         className="text-black text-xl ml-1 font-bold m-2"
         htmlFor="password"
       >
-        Password
+        {t("Password")}
       </label>
       <input
         className="border bg-white border-gray-400 rounded-lg p-2"

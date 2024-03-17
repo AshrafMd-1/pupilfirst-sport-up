@@ -4,6 +4,7 @@ import { Article } from "../../types/data.ts";
 import Preferences from "./Preferences.tsx";
 import { useContext } from "react";
 import { UserContext } from "../../context/user/user.tsx";
+import { useTranslation } from "react-i18next";
 
 function ArticleCards(props: {
   articles: Article[];
@@ -17,10 +18,11 @@ function ArticleCards(props: {
   setSelectedTeams: (filter: string[]) => void;
 }) {
   const userData = useContext(UserContext);
+  const { t } = useTranslation();
   return (
     <div className="mx-12">
       <div className="flex items-center ">
-        <h1 className="text-3xl font-bold mx-auto">Articles</h1>
+        <h1 className="text-3xl font-bold mx-auto">{t("Articles")}</h1>
         {userData?.currentUser?.name && (
           <Preferences
             sports={props.sports}

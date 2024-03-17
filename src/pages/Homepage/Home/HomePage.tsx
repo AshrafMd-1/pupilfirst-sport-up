@@ -1,8 +1,10 @@
 import backgroundImg from "../../../assets/images/background.jpg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 
 const HomePage = () => {
+  const { t } = useTranslation("common");
   const [currentUser] = useState(() => {
     const user =
       localStorage.getItem("auth_token") ||
@@ -46,7 +48,7 @@ const HomePage = () => {
                   className="btn font-bold tracking-wider border-2 border-white text-white bg-transparent py-4 px-6 text-center no-underline  mt-3 transition-all duration-500 ease-in-out rounded-3xl hover:bg-white hover:text-black"
                   to={"/signup"}
                 >
-                  Get Started
+                  {t("Get Started")}
                 </Link>
                 <Link
                   className="btn font-bold tracking-wider border-2 border-white text-white bg-transparent py-4 px-6 text-center no-underline mt-3 transition-all duration-500 ease-in-out rounded-3xl hover:bg-white hover:text-black "
@@ -58,7 +60,7 @@ const HomePage = () => {
                   className="btn font-bold tracking-wider border-2 border-white text-white bg-transparent py-4 px-6 text-center no-underline mt-3 transition-all duration-500 ease-in-out rounded-3xl hover:bg-white hover:text-black "
                   to={"/dashboard"}
                 >
-                  Guest
+                  {t("Guest")}
                 </Link>
               </>
             )}
