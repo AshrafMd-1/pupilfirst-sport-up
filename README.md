@@ -1,6 +1,6 @@
-# SportDash
+# Sport News
 
-A React app that can be used for your daily sports need
+A React app that can be used for your daily sports news
 
 ## Users can
 
