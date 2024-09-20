@@ -10,5 +10,3 @@ A React app that can be used for your daily sports news
 - Create a profile
 - Save filtered preferences
 
-Deployed on Netlify: https://sportup112.netlify.app/
-
