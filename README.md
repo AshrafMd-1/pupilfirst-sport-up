@@ -10,3 +10,4 @@ A React app that can be used for your daily sports news
 - Create a profile
 - Save filtered preferences
 
+https://sport-news-ash.netlify.app
