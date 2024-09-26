@@ -1,7 +1,6 @@
 import logo from "../assets/logo/logo.png";
 import { Fragment, useContext } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
-import ThemeList from "./ThemeList.tsx";
 import { UserContext } from "../context/user/user.tsx";
 import { User } from "../types/auth.ts";
 import { logoutUser } from "../utils/FetchRequest.ts";
@@ -39,7 +38,7 @@ function profileOptions(user: User | null) {
               to={linkChanger().pathname}
               className={classNames(
                 active ? "bg-gray-100" : "",
-                "block px-4 py-2 w-full text-sm text-gray-700",
+                "block px-4 py-2 w-full text-sm text-gray-700"
               )}
             >
               {linkChanger().name}
@@ -52,7 +51,7 @@ function profileOptions(user: User | null) {
               onClick={logoutUser}
               className={classNames(
                 active ? "bg-gray-100" : "",
-                "block px-4 py-2 w-full text-sm text-gray-700",
+                "block px-4 py-2 w-full text-sm text-gray-700"
               )}
             >
               Sign out
@@ -70,7 +69,7 @@ function profileOptions(user: User | null) {
               to="/"
               className={classNames(
                 active ? "bg-gray-100" : "",
-                "block px-4 py-2 text-sm text-gray-700",
+                "block px-4 py-2 text-sm text-gray-700"
               )}
             >
               Homepage
@@ -83,7 +82,7 @@ function profileOptions(user: User | null) {
               to="/login"
               className={classNames(
                 active ? "bg-gray-100" : "",
-                "block px-4 py-2 text-sm text-gray-700",
+                "block px-4 py-2 text-sm text-gray-700"
               )}
             >
               Login
@@ -96,7 +95,7 @@ function profileOptions(user: User | null) {
               to="/signup"
               className={classNames(
                 active ? "bg-gray-100" : "",
-                "block px-4 py-2 text-sm text-gray-700",
+                "block px-4 py-2 text-sm text-gray-700"
               )}
             >
               {t("Sign Up")}
